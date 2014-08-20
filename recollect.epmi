@@ -57,9 +57,9 @@
         <file>
           <filename>epm/recollect/cfg/static/style/auto/zzzz_recollect.css</filename>
           <mime_type>text/x-asm</mime_type>
-          <hash>985e08ce73b23f51ff84dc83b5af5bdc</hash>
+          <hash>1980ab93f9f25695e60bf81b9e9022b7</hash>
           <hash_type>MD5</hash_type>
-          <filesize>3582</filesize>
+          <filesize>3518</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/InputForm/Component/ReCollectDocuments.pm</filename>
