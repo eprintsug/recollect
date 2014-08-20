@@ -43,9 +43,9 @@
         <file>
           <filename>epm/recollect/cfg/lang/en/phrases/recollect.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>d8e4a61f5b7f26d17a72238dd864ac0c</hash>
+          <hash>1739ed25f42284dc1cf009e778ebc69f</hash>
           <hash_type>MD5</hash_type>
-          <filesize>22053</filesize>
+          <filesize>21599</filesize>
         </file>
         <file>
           <filename>epm/recollect/cfg/namedsets/recollect_content</filename>
@@ -62,28 +62,28 @@
           <filesize>3582</filesize>
         </file>
         <file>
-          <filename>epm/recollect/lib/plugins/EPrints/Plugin/InputForm/Component/ReCollectDocuments.pm</filename>
+          <filename>plugins/EPrints/Plugin/InputForm/Component/ReCollectDocuments.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>cc4740134b7c4001c3c0ca4e645b6ca7</hash>
           <hash_type>MD5</hash_type>
           <filesize>4743</filesize>
         </file>
         <file>
-          <filename>epm/recollect/lib/plugins/EPrints/Plugin/Screen/EPMC/ReCollect.pm</filename>
+          <filename>plugins/EPrints/Plugin/Screen/EPMC/ReCollect.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>9cbb39d1753bf552b389da2d8f1908c9</hash>
           <hash_type>MD5</hash_type>
           <filesize>7439</filesize>
         </file>
         <file>
-          <filename>epm/recollect/lib/plugins/EPrints/Plugin/Screen/NewDeposit.pm</filename>
+          <filename>plugins/EPrints/Plugin/Screen/NewDeposit.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>8f53dcb78290e0e9ca18c085f920a128</hash>
           <hash_type>MD5</hash_type>
           <filesize>1664</filesize>
         </file>
         <file>
-          <filename>epm/recollect/lib/static/images/epm/ReCollect.png</filename>
+          <filename>static/images/epm/ReCollect.png</filename>
           <mime_type>image/png</mime_type>
           <hash>8e836eb2bc2ccc7482661dcc71c244fb</hash>
           <hash_type>MD5</hash_type>
@@ -92,11 +92,26 @@
       </files>
       <mime_type>image/png</mime_type>
       <format>image</format>
-      <main>epm/recollect/lib/static/images/epm/ReCollect.png</main>
+      <main>static/images/epm/ReCollect.png</main>
       <content>install</content>
+    </document>
+    <document>
+      <files>
+        <file>
+          <filename>static/images/epm/ReCollect.png</filename>
+          <mime_type>image/png</mime_type>
+          <hash>8e836eb2bc2ccc7482661dcc71c244fb</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>92796</filesize>
+        </file>
+      </files>
+      <format>image</format>
+      <main>static/images/epm/ReCollect.png</main>
+      <content>coverimage</content>
     </document>
   </documents>
   <version>1.2.0</version>
+  <controller>EPMC::ReCollect</controller>
   <creators>
     <item>
       <name>
@@ -130,4 +145,5 @@
   <title>ReCollect</title>
   <description>The ReCollect plugin transforms an EPrints install into a research data repository with expanded metadata profile for describing research data (based on DataCite, INSPIRE and DDI standards) and a redesigned data catalogue for presenting complex collections. Developed by the UK Data Archive and the University of Essex, as part of the JISC MRD Research Data @Essex project.</description>
   <home_page>http://wiki.eprints.org/w/ReCollect</home_page>
+  <icon>images/epm/ReCollect.png</icon>
 </epm>
