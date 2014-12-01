@@ -69,11 +69,11 @@
           <filesize>4743</filesize>
         </file>
         <file>
-          <filename>plugins/EPrints/Plugin/Screen/EPMC/ReCollect.pm</filename>
+          <filename>plugins/EPrints/Plugin/Screen/EPMC/ReCollect_v121.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>9cbb39d1753bf552b389da2d8f1908c9</hash>
+          <hash>f6a1069fd01e948555ffb971453d8418</hash>
           <hash_type>MD5</hash_type>
-          <filesize>7439</filesize>
+          <filesize>8753</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/NewDeposit.pm</filename>
@@ -110,8 +110,8 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.2.0</version>
-  <controller>EPMC::ReCollect</controller>
+  <version>1.2.1</version>
+  <controller>EPMC::ReCollect_v121</controller>
   <creators>
     <item>
       <name>
