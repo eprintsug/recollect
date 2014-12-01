@@ -1,4 +1,4 @@
-package EPrints::Plugin::Screen::EPMC::ReCollect;
+package EPrints::Plugin::Screen::EPMC::ReCollect_v121;
 
 @ISA = qw( EPrints::Plugin::Screen::EPMC );
 
@@ -24,7 +24,9 @@ sub action_enable
 
 	$self->SUPER::action_enable( 1 );
 
-
+	#check if recollect workflow already exists - if it does, we're upgrading...
+	$self->workflow_update();
+	
 my $data_collection_workflow = '<?xml version="1.0"?>
 <workflow xmlns="http://eprints.org/ep3/workflow" xmlns:epc="http://eprints.org/ep3/control">
 	  <stage name="recollect_files">
@@ -219,5 +221,60 @@ sub action_disable
 
 	$self->reload_config if !$skip_reload;
 }
+
+sub workflow_update
+{
+
+	my ($self) = @_;
+
+	my $repo = $self->{repository};
+	my $xml = $repo->xml;
+	my $filename = $repo->config( "config_path" )."/workflows/eprint/default.xml";
+
+	my $dom = $xml->parse_file( $filename );
+
+	my $choose;
+	my @choices = $dom->getElementsByTagName("choose");
+
+	foreach my $element (@choices)
+	{
+		if($element->hasAttribute("required_by") && $element->getAttribute("required_by") eq $self->{package_name})
+		{
+			$choose = $element;
+			last;
+		}
+	}
+
+	# if required_by eq recollect exists flush the elements before adding the v121 workflow
+	if(defined $choose) {
+		my $choose_parent = $choose->parentNode; #probably the flow element but err on the side of caution
+		my @otherwise = $choose->getElementsByTagName("otherwise");
+		foreach my $element ($otherwise[0]->childNodes()){
+			$element->unbindNode();
+			$choose_parent->appendChild($element);
+		}
+
+		open( FILE, ">", $filename );
+
+		print FILE $xml->to_string($dom, indent=>1);
+
+		close( FILE );
+
+
+	EPrints::XML::remove_package_from_xml( $filename, $self->{package_name} );
+
+
+	$dom = $xml->parse_file( $filename );
+
+	open( FILE, ">", $filename );
+
+	print FILE $xml->to_string($dom, indent=>1);
+
+	close( FILE );
+
+
+	}
+
+}	
 
 1;
