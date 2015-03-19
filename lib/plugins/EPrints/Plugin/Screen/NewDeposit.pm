@@ -23,7 +23,8 @@ sub new
 
     $self->{appears} = [
         {
-            place => "key_tools",
+#            place => "key_tools",
+            place => "item_tools",
             action => "create",
             position => 105,
         }
@@ -47,8 +48,10 @@ sub action_create
 
     my $user = $self->{session}->current_user;
 
-    $self->{processor}->{eprint} = $ds->create_object( $self->{session}, {
-        userid => $user->get_value( "userid" ) } );
+    #RM Here we set the type *for a data_collection*... not for all items in cfg.d...
+    $self->{processor}->{eprint} = $ds->create_object( $self->{session}, { 
+		userid => $user->get_value( "userid" ),
+		type => 'data_collection' } );
 
     if( !defined $self->{processor}->{eprint} )
     {

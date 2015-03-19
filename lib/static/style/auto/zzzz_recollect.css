@@ -14,7 +14,7 @@
 
 
 /* typography */
-
+/*
 h1, h2{
 	font-weight:normal;
 }
@@ -31,9 +31,9 @@ h2 {
 
 	text-align:center;
 }
-
+*/
 /* branding */
-
+/*
 .ep_tm_header {
 	background-image: none;
 }
@@ -49,13 +49,12 @@ h2 {
 .ep_tm_archivetitle {
 	display: none;
 }
-
+*/
 /*main content */
-
+/*
 .ep_tm_page_content{
 	width:910px;
 	padding: 25px;
-	/* 	border: 1px solid #CCC; */
 	background-color: #FEFEFE; 
 	padding-bottom:50px;
 }
@@ -63,9 +62,9 @@ h2 {
 .ep_tm_pagetitle {
 	font-weight: normal;
 }
-
+*/
 /* files box */
-
+/*
 .files_box .ep_summary_box_title a {
 	font-size: 95%;
 	text-decoration: none;
@@ -103,9 +102,9 @@ h2 {
 	border-radius: 2px;
 }
 
-
+*/
 /* citation core and extended metadata */ 
-
+/*
 .rd_citation_left{
 	width:62%;
 	float:left;
@@ -207,6 +206,6 @@ span.document_format{
 	display: block;
 }
 
-
+*/
 
 
