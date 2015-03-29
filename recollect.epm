@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<epm xmlns='http://eprints.org/ep2/data/2.0' id='/id/epm/recollect'>
+  <epmid>recollect</epmid>
+  <uri>http://clean.ep.devorkin:8082/id/epm/recollect</uri>
+  <documents>
+    <document>
+      <format>other</format>
+      <content>install</content>
+    </document>
+  </documents>
+  <version>1.2.1</version>
+  <controller>EPMC::ReCollect_v121</controller>
+  <datestamp>2015-03-16 05:19:00</datestamp>
+</epm>
