@@ -309,4 +309,5 @@ sub workflow_id
 	return "default";
 }
 
-
+#remove the default item colection...
+$c->{plugins}->{"Screen::NewEPrint"}->{appears}->{item_tools} = undef;

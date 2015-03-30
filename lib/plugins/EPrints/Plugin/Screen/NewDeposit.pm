@@ -26,7 +26,7 @@ sub new
 #            place => "key_tools",
             place => "item_tools",
             action => "create",
-            position => 105,
+            position => 100,
         }
     ];
 
