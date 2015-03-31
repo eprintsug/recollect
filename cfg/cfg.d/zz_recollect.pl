@@ -298,7 +298,6 @@ sub workflow_id
 	my ($plugin) = @_;
 	my $repo = $plugin->get_repository;
 	my $eprint = $plugin->{processor}->{eprint};
-	$repo->log("In recollect cfg.d:workflow_id => ".$eprint->value("type"));
 	
 	if($eprint->value("type") eq "data_collection"){
 		return "recollect";
@@ -320,7 +319,6 @@ sub workflow_id
 	my ($plugin) = @_;
 	my $repo = $plugin->get_repository;
 	my $eprint = $plugin->{processor}->{eprint};
-	$repo->log("In recollect cfg.d:workflow_id => ".$eprint->value("type"));
 	
 	if($eprint->value("type") eq "data_collection"){
 		return "recollect";
@@ -331,6 +329,25 @@ sub workflow_id
 	return "default";
 }
 
+#and deposit
 
+package EPrints::Plugin::Screen::EPrint::Deposit;
+
+#@ISA = ( 'EPrints::Plugin::Screen::EPrint' );
+
+sub workflow_id
+{
+	my ($plugin) = @_;
+	my $repo = $plugin->get_repository;
+	my $eprint = $plugin->{processor}->{eprint};
+	
+	if($eprint->value("type") eq "data_collection"){
+		return "recollect";
+	}
+	if($eprint->value("type") eq "collection"){
+		return "collection";
+	}
+	return "default";
+}
 #remove the default item colection...
 $c->{plugins}->{"Screen::NewEPrint"}->{appears}->{item_tools} = undef;
