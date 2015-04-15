@@ -21,8 +21,8 @@ $c->{recollect_metadata_profile} = [
                        input_rows => '10',
                       },
  
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 1,
 	simple_Search => 1,
 	},
@@ -34,8 +34,8 @@ $c->{recollect_metadata_profile} = [
                        type => 'text',
                       },
  
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 1,
 	simple_search => 1,
 	},
@@ -48,8 +48,8 @@ $c->{recollect_metadata_profile} = [
 		     input_rows => '3',
 		    },
 
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 1,
 	simple_search => 1,
 	},
@@ -61,8 +61,8 @@ $c->{recollect_metadata_profile} = [
                        type => 'text',
                       },
  
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 1,
 	simple_search => 1,
 	},
@@ -103,8 +103,8 @@ $c->{recollect_metadata_profile} = [
                                   },
                                  ],
                       },
-	summary_page_metadata => 1, #field appears in default summary page metadata (at this position)
-	summary_page_metadata_hidden => 0, #field appears in "Read more" hidden summary page metadata
+	summary_page_metadata => 0, #field appears in default summary page metadata (at this position)
+	summary_page_metadata_hidden => 1, #field appears in "Read more" hidden summary page metadata
 	advanced_search => 0, #field appears in advanced search form
 	simple_search => 1, #field included in simple_search fieldset 
 	},
@@ -116,8 +116,8 @@ $c->{recollect_metadata_profile} = [
 
 		    },
 
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 1,
 	simple_search => 1,
 	},
@@ -130,8 +130,8 @@ $c->{recollect_metadata_profile} = [
 
 		    },
 
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 1,
 	simple_search => 1,
 	},
@@ -144,8 +144,8 @@ $c->{recollect_metadata_profile} = [
                        input_rows => '10',
                       },
 
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 1,
 	simple_search => 1,
 	},
@@ -182,8 +182,8 @@ $c->{recollect_metadata_profile} = [
                                  ],
                       },
  
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 0,
 	simple_search => 1,
 	},
@@ -280,8 +280,8 @@ $c->{recollect_metadata_profile} = [
                        render_res => 'day',
                       },
  
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 0,
 	simple_search => 0,
 	},
@@ -293,8 +293,8 @@ $c->{recollect_metadata_profile} = [
                        type => 'text',
                       },
 
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 0,
 	simple_search => 0,
 	},
@@ -304,8 +304,8 @@ $c->{recollect_metadata_profile} = [
                        name => 'retention_comment',
                        type => 'longtext',
                       },
-       	summary_page_metadata => 1,
-	summary_page_metadata_hidden => 0,
+       	summary_page_metadata => 0,
+	summary_page_metadata_hidden => 1,
 	advanced_search => 0,
 	simple_search => 0,
 	},
