@@ -22,7 +22,8 @@
 	    </component>
 	  </stage>
 	<stage name="data_collection">
-	    <component type="Field::AddToCollection"><field ref="relation" /></component>
+<!-- For use in conjunction with collection plugin, add an item to a collection from it's own workflow -->
+<!--	    <component type="Field::AddToCollection"><field ref="relation" /></component> -->
 
 		<component><field ref="title" required="yes" input_lookup_url="{$config{rel_cgipath}}/users/lookup/title_duplicates" input_lookup_params="id={eprintid}&amp;dataset=eprint&amp;field=title" /></component>
 		<component><field ref="abstract" required="yes"/></component>
