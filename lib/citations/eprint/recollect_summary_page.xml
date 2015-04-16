@@ -5,7 +5,7 @@
 -->
 
 <cite:citation xmlns="http://www.w3.org/1999/xhtml" xmlns:epc="http://eprints.org/ep3/control" xmlns:cite="http://eprints.org/ep3/citation" >
-
+ <div class="rd_citation_header">
   <p class="rd_text_center" style="margin-bottom: 1em">
     <epc:print expr="$item.citation('default')" />
   </p>
@@ -22,13 +22,14 @@
       <epc:phrase ref="eprint_fieldname_official_url"/>: <epc:print expr="official_url" />
     </div>
   </epc:if>
-
   <epc:if test="abstract">
     <h2><epc:phrase ref="eprint_fieldname_abstract"/></h2>
     <p  class="rd_text_center" style="text-align: left; margin: 1em auto 0.5em auto; line-height:1.5em"><epc:print expr="abstract" /></p>
   </epc:if>
-  <div class="rd_citation_left">
-  <table class="main_meta_table" style="margin-bottom: 1em; margin-top: 1em; width:100%" cellpadding="3">
+ </div>
+
+ <div class="rd_citation_left">
+  <table class="main_meta_table" style="margin-bottom: 1em; margin-top: 1em;" cellpadding="3">
 
 <epc:comment> 
        The block below loops over a list of field names taken from eprint_render.pl
@@ -68,7 +69,7 @@
                         </div>
                         <div class="ep_summary_box_body" id="{eprintid}_content" style="display: none">
                                 <div id="{eprintid}_content_inner">         
-  <table class="main_meta_table" style="margin-bottom: 1em; margin-top: 1em; width:100%" cellpadding="3">
+  <table class="main_meta_table" style="margin-bottom: 1em; margin-top: 1em;" cellpadding="3">
                     
       <epc:foreach expr="$config{summary_page_metadata_full}" iterator="fieldname">
         <epc:if test="is_set($item.property($fieldname))">
@@ -83,83 +84,183 @@
                                 </div>
                         </div>
                 </div>              
-</td></tr>
-<epc:comment>
-<tr>
-    <epc:if test="!$flags{preview}">
-      <td colspan="2">
-          <epc:if test="$current_user{usertype} = 'admin'">
-          <h3>Actions (login required)</h3>
-                <table class="ep_summary_page_actions">
-                <epc:foreach expr="action_list('eprint_summary_page_actions',$item)" iterator="action">
-                <tr>
-                    <td><epc:print expr="$action.action_icon()" /></td>
-                    <td><epc:print expr="$action.action_title()" /></td>
-                </tr>
-                </epc:foreach>
-        </table>
-    </epc:if>
-    </td>
-  </epc:if>
+	</td></tr>
+	<epc:comment>
+	<tr>
+	    <epc:if test="!$flags{preview}">
+	      <td colspan="2">
+		  <epc:if test="$current_user{usertype} = 'admin'">
+		  <h3>Actions (login required)</h3>
+			<table class="ep_summary_page_actions">
+			<epc:foreach expr="action_list('eprint_summary_page_actions',$item)" iterator="action">
+			<tr>
+			    <td><epc:print expr="$action.action_icon()" /></td>
+			    <td><epc:print expr="$action.action_title()" /></td>
+			</tr>
+			</epc:foreach>
+		</table>
+	    </epc:if>
+	    </td>
+	  </epc:if>
 
-</tr>
-</epc:comment>
+	</tr>
+	</epc:comment>
   </table>
-</div>	
+ </div> <!-- end recollect_citation_left -->	
 
-<epc:comment>
-render our file box pulled from eprint_render... let's not and say we did
-</epc:comment>
+ <div class="rd_right_container">
+    <div class="rd_citation_right">
+       <h2><epc:phrase ref="recollect:files_title"/></h2>
 
   <epc:set name='docs' expr='$item.documents()'>
 
     <epc:if test="length($docs) = 0">
-      <epc:phrase ref="page:nofulltext" />
-      <epc:if test="$item.contact_email().is_set() and eprint_status = 'archive'">
+      <p><epc:phrase ref="page:nofulltext" /></p>
+	
+              <epc:set name='rrs' expr='$item.property("related_resources")'>
+		    <epc:if test="length($rrs) gt 0">
+			<epc:phrase ref="recollect:datasets_external"/>
+			<ul>
+      			 <epc:foreach expr="$rrs" iterator="rr">        			
+			  <epc:if test="is_set($rr{type}) and $rr{type} = 'dataresource'"> 
+			   <li><a href="{$rr{url}}"><epc:print expr="$rr{title}" /></a></li>
+			  </epc:if>
+      			 </epc:foreach>
+			</ul>
+		    </epc:if>
+		    <epc:if test="length($rrs) = 0">
+			<p><a href="{$config{http_cgiurl}}/request_doc?eprintid={$item.property('eprintid')}"><epc:phrase ref="request:button"/></a></p>
+		    </epc:if>
+	      </epc:set>
+
+   <!--   <epc:if test="$item.contact_email().is_set() and eprint_status = 'archive'">
         (<a href="{$config{http_cgiurl}}/request_doc?eprintid={eprintid}"><epc:phrase ref="request:button" /></a>)
       </epc:if>
+-->
     </epc:if>
-  
-    <epc:if test="length($docs) gt 0">
-      <epc:phrase ref="page:fulltext" />
-      <table>
-        <epc:foreach expr="$docs" iterator="doc">
-          <tr>
-            <td valign="top" align="right"><epc:print expr="$doc.icon('HoverPreview','noNewWindow')}" /></td>
-            <td valign="top">
-              <epc:print expr="$doc.citation('default')" /><br />
-              <a href="{$doc.url()}" class="ep_document_link"><epc:phrase ref="summary_page:download"/> (<epc:print expr="$doc.doc_size().human_filesize()" />)</a>
-              <epc:if test="$doc.is_public()">
-			  <epc:choose>
-			  <epc:when test="$doc.thumbnail_url('video_mp4').is_set()">
-			  | <epc:print expr="$doc.preview_link(phrase('lib/document:preview'),'docs','video_mp4')" />
-			  </epc:when>
-			  <epc:when test="$doc.thumbnail_url('audio_mp4').is_set()">
-			  | <epc:print expr="$doc.preview_link(phrase('lib/document:preview'),'docs','audio_mp4')" />
-			  </epc:when>
-			  <epc:when test="$doc.thumbnail_url('lightbox').is_set()">
-			  | <epc:print expr="$doc.preview_link(phrase('lib/document:preview'),'docs','lightbox')" />
-			  </epc:when>
-			  </epc:choose>
-			  </epc:if>
-              <epc:if test="!$doc.is_public() and $item.contact_email().is_set() and eprint_status = 'archive'">
-                | <a href="{$config{http_cgiurl}}/request_doc?docid={$doc{docid}"><epc:phrase ref="request:button" /></a>
-              </epc:if>
-  
-              <ul>
-              <epc:foreach expr="$doc.related_objects('http://eprints.org/relation/hasVersion')" iterator="rel">
-                <epc:if test="$rel{relation_type}!='http://eprints.org/relation/isVolatileVersionOf'">
-                  <li><epc:print expr="$rel.citation_link('default')" /></li>
-                </epc:if>
-              </epc:foreach>
-              </ul>
-            </td>
-          </tr>
-        </epc:foreach>
-      </table>
-    </epc:if>
-
   </epc:set>
+
+	<epc:comment>render our file box pulled from eprint_render</epc:comment>
+<!--	<epc:print expr="$rd_sorteddocs" /> -->
+	<epc:set name='filetypes' expr="$flags{rc_filetypes}">
+	        <epc:foreach expr="$filetypes" iterator="filetype">
+			<epc:set name='docs' expr='$item.documents_recollect($filetype)'>
+			 	<epc:if test="length($docs) gt 0">
+					<h3 class="file_title"><epc:phrase ref="recollect_content_typename_{$filetype}" /></h3>
+					<epc:foreach expr="$docs" iterator="doc">
+						<div class="file_group">
+						    <div class="ep_summary_box_title" id="{$doc.property('docid')}_file_meta">
+							<div class="ep_only_js" id="{$doc.property('docid')}_rd_colbar" style="display: none">
+								<a class="ep_box_collapse_link" onclick ="EPJS_blur(event); EPJS_toggleSlideScroll('{$doc.property('docid')}_rd_content',true,'{$doc.property('docid')}_file_meta');EPJS_toggle('{$doc.property('docid')}_rd_colbar',true);EPJS_toggle('{$doc.property('docid')}_rd_bar',false);return false;" href="#"><img src="{$config{base_url}}/style/images/minus.png" border="0" />
+								</a> 
+								<a class="ep_box_collapse_text" href="{$doc.url()}"><epc:print expr="$doc.truncate_url($doc.property('main'))" /></a>
+								<epc:if test="!$doc.is_public() and $item.contact_email().is_set() and eprint_status = 'archive'">
+									<input id="file_security" type="hidden" value="{$doc.raw_set_value('security')}"/>
+									<div id="hide_request"> (<a href="{$config{http_cgiurl}}/request_doc?docid={$doc.property('docid')}"><epc:phrase ref="request:button"/></a>)</div>	
+								</epc:if>
+							</div>
+							<div class="ep_only_js" id="{$doc.property('docid')}_rd_bar">
+								<a class="ep_box_collapse_link" onclick ="EPJS_blur(event); EPJS_toggleSlideScroll('{$doc.property('docid')}_rd_content',false,'{$doc.property('docid')}_file_meta');EPJS_toggle('{$doc.property('docid')}_rd_colbar',false);EPJS_toggle('{$doc.property('docid')}_rd_bar',true);return false;" href="#"><img src="{$config{base_url}}/style/images/plus.png" border="0" />
+								</a> 
+								<a class="ep_box_collapse_text" href="{$doc.url()}"><epc:print expr="$doc.truncate_url($doc.property('main'))" /></a>
+								<epc:if test="!$doc.is_public() and $item.contact_email().is_set() and eprint_status = 'archive'">
+									<input id="file_security" type="hidden" value="{$doc.property('security')}"/>
+									<div id="hide_request"> (<a href="{$config{http_cgiurl}}/request_doc?docid={$doc.property('docid')}"><epc:phrase ref="request:button"/></a>)</div>	
+								</epc:if>
+							</div>
+						    </div>
+						    <div class="ep_summary_box_body" id="{$doc.property('docid')}_rd_content" style="display: none">
+							<div id="{$doc.property('docid')}_rd_content_inner">         
+
+							<ul>
+								<li><span class="filemeta_h"><epc:phrase ref="document_fieldname_formatdesc" />:</span><span class="filemeta"><epc:print expr="$doc.property('formatdesc')" /></span></li>
+								<li><span class="filemeta_h"><epc:phrase ref="document_fieldname_security" />:</span><span class="filemeta"><epc:print expr="$doc.property('security')" /></span></li>
+								<li><span class="filemeta_h"><epc:phrase ref="document_fieldname_license" />:</span><span class="filemeta"><epc:phrase ref="licenses_typename_{$doc.raw_set_value('license')}_img" /> <!--<epc:print expr="$doc.property('license')" />--></span></li>
+								<li><span class="filemeta_h"><epc:phrase ref="document_fieldname_format" />:</span><span class="filemeta"><epc:print expr="$doc.property('format')" /></span></li>
+								<li><span class="filemeta_h"><epc:phrase ref="file_fieldname_mime_type" />:</span><span class="filemeta"><epc:print expr="$doc.doc_mime()" /></span></li>
+								<li><span class="filemeta_h"><epc:phrase ref="file_fieldname_filesize" />:</span><span class="filemeta"><epc:print expr="$doc.human_doc_size()" /></span></li>
+							</ul>
+							</div>
+						    </div>
+						</div>
+					</epc:foreach>
+				</epc:if>
+			</epc:set>
+		</epc:foreach>
+	</epc:set>
+	</div>
+
+
+	<epc:if test="is_set(related_resources)">
+  	   <div class="rd_citation_right">
+              <h3><epc:phrase ref="eprint_fieldname_related_resources"/></h3>
+              
+              <epc:set name='rrs' expr='$item.property("related_resources")'>
+                <ul>
+      			<foreach expr="$rrs" iterator="rr" limit='10'>        			
+                  		<li><a href="{$rr{url}}"><epc:print expr="$rr{title}" /></a><epc:if test="is_set($rr{type})"> (<epc:phrase ref="eprint_fieldopt_related_resources_type_{$rr{type}}" />)</epc:if></li>
+      			</foreach>
+                </ul>
+     	      </epc:set>
+           </div>
+  	</epc:if>
+  
+      <div class="rd_citation_right">
+	<!-- stats go here -->
+	<p>Stats go here?</p>
+	<epc:comment>
+         <h2><epc:phrase ref="recollect:stats_title"/></h2> 
+		<!-- link to stats report for this item -->
+	      <a href="{$config{http_cgiurl}}/stats/report/eprint/{$item.property('eprintid')}"><img src="/images/epm/irstats2.png" style="width: 64px; border: none; margin-right: 0.5em;"/></a>
+		<!-- altmetriocs doughnut for this item -->
+	
+	      <div class='altmetric-embed' data-badge-type='donut' data-doi="{$item.property('id_number').as_string()}" style="margin-right: 0.5em;"></div>    
+		<!-- embed irstats graph directly in page -->
+	      <div class="irstats2_summary_page_container" id="irstats2_summary_page_container">
+
+			<p><epc:phrase ref="recollect:embedded_stats_title"/></p>
+			<div id="irstats2_summary_page_downloads" class="irstats2_graph"></div>
+			<div id="irstats2_summary_page_downloads_again" class="irstats2_graph"></div>
+			<div class="more_stats">
+				<a href="{$config{http_cgiurl}}/stats/report/eprint/{$item.property('eprintid')}"><epc:phrase ref="recollect:embedded_stats_more"/></a></div>
+
+	      </div>
+	      <script type="text/javascript">
+			document.observe("dom:loaded",function(){
+
+			var irstats2_summary_page_eprintid = '<epc:print expr="$item.property('eprintid')"/>';
+
+			new EPJS_Stats_GoogleGraph ( { 'context': {
+				'range':'_ALL_',
+				'set_name': 'eprint',
+				'set_value': irstats2_summary_page_eprintid,
+				'datatype':'downloads' },
+				'options': {
+				'container_id': 'irstats2_summary_page_downloads', 'date_resolution':'month','graph_type':'column'
+				} } );
+			});
+			
+		</script>
+	</epc:comment>
+
+        </div>
+
+  	<div class="rd_citation_right">
+  	   <h3><epc:phrase ref="recollect:login_actions_title"/></h3>
+    
+    		<epc:foreach expr="action_list('eprint_summary_page_actions',$item)" iterator="action">
+                	<epc:print expr="$action.action_icon()" /> <epc:print expr="$action.action_title()" />
+                </epc:foreach>
+    	</div>
+  </div><!-- end of rd_right_container -->
+
+
+
+
+
+
+
+
 
 </cite:citation>
 

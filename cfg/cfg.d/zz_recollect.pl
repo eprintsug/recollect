@@ -78,6 +78,9 @@ $c->{eprint_render} = sub {
 		$links->appendChild( $repository->plugin( "Export::DC" )->dataobj_to_html_header( $eprint ) );
 	}
 
+	my @content = $repository->get_types("recollect_content");
+	$flags->{rc_filetypes} = \@content;
+
 ###### Is there because... #####
 	my $page = $eprint->render_citation( "recollect_summary_page", %fragments, flags=>$flags );
 
@@ -351,3 +354,127 @@ sub workflow_id
 }
 #remove the default item colection...
 $c->{plugins}->{"Screen::NewEPrint"}->{appears}->{item_tools} = undef;
+
+
+#Script functions
+
+package EPrints::Plugin::ScriptPlugin;
+
+use strict;
+
+our @ISA = qw/EPrints::Plugin/;
+
+#now for the cliever bit
+
+package EPrints::Script::Compiled;
+
+sub run_documents_recollect
+{
+	my( $self, $state, $eprint, $content ) = @_;
+
+	if( ! $eprint->[0]->isa( "EPrints::DataObj::EPrint") )
+	{
+		$self->runtime_error( "documents() must be called on an eprint object." );
+	}
+	$content = $content->[0];
+	$eprint = $eprint->[0];
+
+	my $sorteddocs = [];
+	for my $doc($eprint->get_all_documents()){
+		next if($content ne $doc->value("content"));
+		push @$sorteddocs, $doc;
+	}
+	return [ [@$sorteddocs],  "ARRAY" ];
+
+}
+#this is really the size fot he doc's main file
+sub run_human_doc_size
+{
+	my( $self, $state, $doc ) = @_;
+
+	if( !defined $doc->[0] || ref($doc->[0]) ne "EPrints::DataObj::Document" )
+	{
+		$self->runtime_error( "Can only call doc_zie() on document objects not ".
+			ref($doc->[0]) );
+	}
+
+	if( !$doc->[0]->is_set( "main" ) )
+	{
+		return 0;
+	}
+
+	my %files = $doc->[0]->files;
+
+	return [ EPrints::Utils::human_filesize($files{$doc->[0]->get_main}) || 0, "INTEGER" ];
+}
+
+sub run_doc_mime
+{
+	my( $self, $state, $doc ) = @_;
+
+	if( !defined $doc->[0] || ref($doc->[0]) ne "EPrints::DataObj::Document" )
+	{
+		$self->runtime_error( "Can only call doc_zie() on document objects not ".
+			ref($doc->[0]) );
+	}
+
+	if( !$doc->[0]->is_set( "main" ) )
+	{
+		return 0;
+	}
+	my $fileobj = $doc->[0]->stored_file( $doc->[0]->get_main );
+
+	return [ $fileobj->value("mime_type"), "STRING" ];
+}
+
+sub run_truncate_url
+{
+	my( $self, $state, $obj, $url ) = @_;
+
+     	 #check the length of the url first,  if more that 30 chars truncate the middle
+            my $len = 30;
+            my $url_trunc;
+		$url = $url->[0];
+            if (length($url) > $len)
+            {
+                $url_trunc =
+                    substr($url, 0, $len / 2) . " ... "
+                  . substr($url, -$len / 2);
+            } ## end if (length($filetmp) >...)
+            else
+            {
+                $url_trunc = $url;
+            }
+
+	return [ $url_trunc, "STRING" ];
+}
+#I hope there turns out ot be a better way to do this...
+sub run_raw_set_value
+{
+	my( $self, $state, $objvar, $value ) = @_;
+
+	if( !defined $objvar->[0] )
+	{
+		$self->runtime_error( "can't get a property {".$value->[0]."} from undefined value" );
+	}
+	my $ref = ref($objvar->[0]);
+	if( $ref eq "HASH" || $ref eq "EPrints::RepositoryConfig" )
+	{
+		my $v = $objvar->[0]->{ $value->[0] };
+		my $type = ref( $v ) =~ /^XML::/ ? "XHTML" : "STRING";
+		return [ $v, $type ];
+	}
+	if( $ref !~ m/::/ )
+	{
+		$self->runtime_error( "can't get a property from anything except a hash or object: ".$value->[0]." (it was '$ref')." );
+	}
+	if( !$objvar->[0]->isa( "EPrints::DataObj" ) )
+	{
+		$self->runtime_error( "can't get a property from non-dataobj: ".$value->[0] );
+	}
+	if( !$objvar->[0]->get_dataset->has_field( $value->[0] ) )
+	{
+		$self->runtime_error( $objvar->[0]->get_dataset->confid . " object does not have a '".$value->[0]."' field" );
+	}
+	return [ $objvar->[0]->get_value( $value->[0] ), "STRING"];
+}

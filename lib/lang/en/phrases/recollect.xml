@@ -357,4 +357,8 @@
 
 	<epp:phrase id="eprint_fieldname_metadata_language">Metadata language</epp:phrase>
 
+	<epp:phrase id="recollect:files_title">Files</epp:phrase>
+
+	<epp:phrase id="recollect:login_actions_title">Actions (Log-in required)</epp:phrase>
+
 </epp:phrases>
