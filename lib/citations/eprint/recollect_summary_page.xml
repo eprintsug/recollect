@@ -19,7 +19,14 @@
 
   <epc:if test="official_url">
     <div class="rd_text_center" style="margin-bottom: 1em">
-      <epc:phrase ref="eprint_fieldname_official_url"/>: <epc:print expr="official_url" />
+	<epc:choose>
+	<epc:when test="id_number">
+	      <epc:phrase ref="eprint_fieldname_id_number"/>: <epc:print expr="id_number" />
+	</epc:when>
+	<epc:otherwise>
+	      <epc:phrase ref="eprint_fieldname_official_url"/>: <epc:print expr="official_url" />
+	</epc:otherwise>
+	</epc:choose>
     </div>
   </epc:if>
   <epc:if test="abstract">
