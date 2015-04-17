@@ -361,4 +361,10 @@
 
 	<epp:phrase id="recollect:login_actions_title">Actions (Log-in required)</epp:phrase>
 
+	<epp:phrase id="recollect:stats_title">Statistics</epp:phrase>
+
+	<epp:phrase id="recollect:embedded_stats_title"></epp:phrase>
+
+	<epp:phrase id="recollect:embedded_stats_more"></epp:phrase>
+
 </epp:phrases>
