@@ -197,6 +197,23 @@ $c->{set_eprint_automatic_fields} = sub
                 {
                          $eprint->set_value( "date", $lastmod );
                 }
+
+	my @docs = $eprint->get_all_documents();
+	my $textstatus = "none";
+	if( scalar @docs > 0 )
+	{
+		$textstatus = "public";
+		foreach my $doc ( @docs )
+		{
+			if( !$doc->is_public )
+			{
+				$textstatus = "restricted";
+				last;
+			}
+		}
+	}
+	$eprint->set_value( "full_text_status", $textstatus );
+
 };
 
 #####  add embargo date cap at 2 years
