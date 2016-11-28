@@ -13,7 +13,7 @@
 	    <component type="Upload" show_help="always"/>
 	    <component type="Documents">
 	      <field ref="security"/>
-	      <field ref="content" set_name="recollect_content"/>
+	      <field ref="content" set_name="recollect_content" required="yes"/>
 	      <field ref="formatdesc"/>
 	      <field ref="date_embargo"/>
 	      <field ref="license" required="yes"/>
