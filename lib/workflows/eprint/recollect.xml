@@ -36,12 +36,12 @@
 		<epc:if test="$STAFF_ONLY = 'TRUE'">
 			<component show_help="always"><field ref="id_number"/></component>
 		</epc:if>
-		<component><field ref="data_type" required="yes" input_lookup_url="{$config{perl_url}}/users/lookup/simple_file" input_lookup_params="file=data_type" /></component>
+		<component><field ref="data_type" required="yes" input_lookup_url="{$config{rel_cgipath}}/users/lookup/simple_file" input_lookup_params="file=data_type" /></component>
 
 		<component><field ref="contributors" collapse="yes" /></component>
 		<component type="Field::Multi">
 		    <title>Research Funders</title>
-		    <field ref="funders" input_lookup_url="{$config{perl_url}}/users/lookup/simple_file" input_lookup_params="file=funders" />
+		    <field ref="funders" input_lookup_url="{$config{rel_cgipath}}/users/lookup/simple_file" input_lookup_params="file=funders" />
 		    <field ref="projects"/>
 		    <field ref="grant" collapse="yes" />
 		</component>
