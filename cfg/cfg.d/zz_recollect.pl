@@ -225,8 +225,8 @@ $c->{validate_document} = sub {
     my $eprint = $document->get_eprint();
 
 	if($eprint->value("type") ne "data_collection"){
-            return $repository->call("recollect_validate_document");
-         }
+            return $repository->call("recollect_validate_document", $document, $repository, $for_archive);
+    }
 
     my @problems = ();
 
