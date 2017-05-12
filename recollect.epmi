@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<epm xmlns='http://eprints.org/ep2/data/2.0' id='http://bridr.ep.devorkin/id/epm/recollect'>
+<epm xmlns='http://eprints.org/ep2/data/2.0' id='http://pok.pok.com/id/epm/recollect'>
   <epmid>recollect</epmid>
   <uri>http://bridr.ep.devorkin/id/epm/recollect</uri>
   <documents>
@@ -7,67 +7,11 @@
       <files>
         <file>
           <datasetid>document</datasetid>
-          <filename>epm/recollect/cfg/cfg.d/z_recollect_metadata_profile.pl</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>c9a2fc703210e63e82b796c4c4a8a6bf</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>8278</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/recollect/cfg/cfg.d/zz_recollect.pl</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>091c7bda44052f7a35b2e63c03e57335</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>15313</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/recollect/cfg/namedsets/recollect_content</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>fd63a735215e2e7d681f61e71f5a694a</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>48</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/recollect/cfg/autocomplete/funders</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>3d15d9dae4f782aabeeb177057c68e78</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>516</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/recollect/cfg/autocomplete/data_type</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>6dd895567a6bd5481d73ccdc767893dd</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>87</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>citations/document/recollect_default.xml</filename>
+          <filename>lang/en/phrases/recollect.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>6a9992eeb083a29bd87721beb3ce3a4d</hash>
+          <hash>850d108c261521069b2e95b4646a9722</hash>
           <hash_type>MD5</hash_type>
-          <filesize>3397</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>citations/eprint/recollect_summary_page.xml</filename>
-          <mime_type>application/xml</mime_type>
-          <hash>da82ebdc94b617e20d03a9ec9ea9f68d</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>13364</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>static/style/auto/zzzz_recollect.css</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>ed4115090f28a753cf91f58a040ab4c6</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>1148</filesize>
+          <filesize>22037</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -79,19 +23,19 @@
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>workflows/eprint/recollect.xml</filename>
-          <mime_type>application/xml</mime_type>
-          <hash>e1da7f15fd156ec925cb9899c71d2a31</hash>
+          <filename>static/style/auto/zzzz_recollect.css</filename>
+          <mime_type>text/x-c</mime_type>
+          <hash>ed4115090f28a753cf91f58a040ab4c6</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4179</filesize>
+          <filesize>1148</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>lang/en/phrases/recollect.xml</filename>
-          <mime_type>application/xml</mime_type>
-          <hash>4cc0da75269c33293edf465071a0d24e</hash>
+          <filename>plugins/EPrints/Plugin/InputForm/Component/ReCollectDocuments.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>cc4740134b7c4001c3c0ca4e645b6ca7</hash>
           <hash_type>MD5</hash_type>
-          <filesize>21953</filesize>
+          <filesize>4743</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -111,16 +55,72 @@
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/InputForm/Component/ReCollectDocuments.pm</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>cc4740134b7c4001c3c0ca4e645b6ca7</hash>
+          <filename>workflows/eprint/recollect.xml</filename>
+          <mime_type>application/xml</mime_type>
+          <hash>975fccb6daa1199427455efb4b45b824</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4743</filesize>
+          <filesize>4200</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>citations/document/recollect_default.xml</filename>
+          <mime_type>application/xml</mime_type>
+          <hash>6a9992eeb083a29bd87721beb3ce3a4d</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>3397</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>citations/eprint/recollect_summary_page.xml</filename>
+          <mime_type>application/xml</mime_type>
+          <hash>da82ebdc94b617e20d03a9ec9ea9f68d</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>13364</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/recollect/cfg/autocomplete/data_type</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>6dd895567a6bd5481d73ccdc767893dd</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>87</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/recollect/cfg/autocomplete/funders</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>3d15d9dae4f782aabeeb177057c68e78</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>516</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/recollect/cfg/namedsets/recollect_content</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>a45065b8283382af4cf9c61c53ca88f4</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>56</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/recollect/cfg/cfg.d/zz_recollect.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>e44ddcdc5d186b60205edc1bccf67e94</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>15346</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/recollect/cfg/cfg.d/z_recollect_metadata_profile.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>c9a2fc703210e63e82b796c4c4a8a6bf</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>8278</filesize>
         </file>
       </files>
       <mime_type>text/plain</mime_type>
       <format>text</format>
-      <main>plugins/EPrints/Plugin/InputForm/Component/ReCollectDocuments.pm</main>
+      <main>epm/recollect/cfg/cfg.d/z_recollect_metadata_profile.pl</main>
       <content>install</content>
     </document>
     <document>
@@ -141,7 +141,7 @@
   </documents>
   <version>1.2.1</version>
   <controller>EPMC::ReCollect_v121</controller>
-  <datestamp>2015-04-18 08:13:00</datestamp>
+  <datestamp>2017-05-12 09:18:18</datestamp>
   <title>Recollect</title>
   <icon>images/epm/ReCollect.png</icon>
 </epm>
