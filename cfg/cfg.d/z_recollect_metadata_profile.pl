@@ -230,12 +230,12 @@ $c->{recollect_metadata_profile} = [
 		     name         => 'related_resources',
 		     type         => 'compound',
 		     multiple     => 1,
-		     render_value => 'EPrints::Extras::render_url_truncate_end',
 		     fields       => [
 			 {
 			  sub_name   => 'url',
 			  type       => 'url',
 			  input_cols => 40,
+			  render_value => 'EPrints::Extras::render_url_truncate_end',
 			 },
 			 {
 			  sub_name     => 'type',
